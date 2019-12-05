@@ -24,17 +24,17 @@ namespace EngineerUtil
             Workbook workbook = application.ActiveWorkbook;
             try
             {
-                Worksheet plcSheet = workbook.Sheets["PLC_Engineers_Plan"];
-                Worksheet plcSheet2 = workbook.Sheets["PLC_Engineers_Resume"];
+                Worksheet plcSheet = workbook.Sheets[@"PLC档期及项目完成度表"];
+                Worksheet plcSheet2 = workbook.Sheets[@"PLC_工程师简历"];
                 Range Cells = plcSheet.Cells;
-                int startRow = 0, startCol = 0, endRow = 0, endCol = 0;
+                int startRow = 1, startCol = 1, endRow = 0, endCol = 0;
 
                 if (plcSheet != null && plcSheet2 != null)
                 {
                     bool findRange = false;
-                    for (int i = 1; i <= 800; i++)
+                    for (int i = startRow; i <= 800; i++)
                     {
-                        for (int j = 1; j <= 100; j++)
+                        for (int j = startCol; j <= 100; j++)
                         {
                             //Cells[i, j].Value2 = Convert.ToString(i + j);
                             var value = Cells[i, j].Value2;
@@ -108,7 +108,7 @@ namespace EngineerUtil
                                     List<int> list = kvp.Value;
                                     string result = "KW " + list.First() + "-" + list.Last();
                                     Cells2[15 * (k - 1) + 1 + l, 4].Value2 = result;
-                                    Range range = Cells[line, startCol + 3];
+                                    Range range = Cells[line, startCol + 2];
                                     Cells2[15 * (k - 1) + 1 + l, 5].Value2 = range.MergeArea.Cells[1, 1].Value2;
                                 }
                                 l++;
